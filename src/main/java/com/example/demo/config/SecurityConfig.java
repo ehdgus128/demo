@@ -4,7 +4,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -35,9 +34,17 @@ public class SecurityConfig {
                         .permitAll()
                 );
 
+//        http
+//                .csrf((auth) -> auth.disable());
+
         http
-                .csrf(AbstractHttpConfigurer::disable);
-//              .csrf((auth) -> auth.disable());
+                .sessionManagement((auth) -> auth
+                        .maximumSessions(1)
+                        .maxSessionsPreventsLogin(true));
+
+        http
+                .sessionManagement((auth) -> auth
+                        .sessionFixation().changeSessionId());
 
         return http.build();
     }
