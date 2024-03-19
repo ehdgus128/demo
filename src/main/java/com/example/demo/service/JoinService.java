@@ -10,7 +10,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 @Service
 public class JoinService {
 
@@ -25,11 +24,11 @@ public class JoinService {
    @Transactional
     public void joinProcess (JoinDTO joinDTO){
 
-       // DB에 이미 동일한 username을 가진 회원이 존재하는지?
-       boolean isUser = userRepository.existsByUsername(joinDTO.getUsername());
-       if(isUser){
+        // username 중복체크
+        boolean isUser = userRepository.existsByUsername(joinDTO.getUsername());
+        if(isUser){
            return;
-       }
+        }
 
         System.out.println("==== Start Transaction ====");
 
@@ -39,16 +38,8 @@ public class JoinService {
         data.setPassword(bCryptPasswordEncoder.encode(joinDTO.getPassword()));
         data.setRole("ROLE_USER");
 
-//        userRepository.save(data);
-       try {
-           userRepository.save(data);
-       } catch (DataAccessException e) {
-           // 예외 메시지를 출력하고 로깅합니다.
-           System.err.println("Error occurred while saving data to database: " + e.getMessage());
-           logger.error("Error occurred while saving data to database", e);
-           // 예외 처리를 위한 추가적인 작업을 수행할 수 있습니다.
-       }
+        userRepository.save(data);
 
         System.out.println("==== End Transaction ====");
-    }
+   }
 }
