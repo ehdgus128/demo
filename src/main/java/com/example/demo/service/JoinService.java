@@ -30,7 +30,7 @@ public class JoinService {
            return;
         }
 
-        System.out.println("==== Start Transaction ====");
+        System.out.println("=== Start Transaction ===");
 
         UserEntity data = new UserEntity();
 
@@ -40,6 +40,6 @@ public class JoinService {
 
         userRepository.save(data);
 
-        System.out.println("== End Transaction ======");
+        System.out.println("=== End Transaction ===");
    }
 }
