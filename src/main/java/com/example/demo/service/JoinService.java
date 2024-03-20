@@ -40,6 +40,6 @@ public class JoinService {
 
         userRepository.save(data);
 
-        System.out.println("==== End Transaction ======");
+        System.out.println("======= End Transaction ======");
    }
 }
