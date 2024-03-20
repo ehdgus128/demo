@@ -10,7 +10,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
+//20240320 1352 pull request test
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
 
