@@ -13,6 +13,7 @@ public class CustomUserDetails implements UserDetails {
 
     public CustomUserDetails(UserEntity userEntity){
 
+
         this.userEntity = userEntity;
     }
 
