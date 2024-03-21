@@ -1,17 +1,56 @@
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>소셜 로그인</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .login {
+            margin-top: 20px;
+        }
+        .login a {
+            margin: 20px; /* 로고들 사이의 간격 조절 */
+        }
+    </style>
+
 </head>
 <body>
 
-    <!-- kakao button -->
-    <div class="text-center">
-        <a href="https://kauth.kakao.com/oauth/authorize?client_id=603b6f523013db5e0b8e02d2dfa39dc6&redirect_uri=http://localhost:8080/oauth2/kakao&response_type=code">
-            <img src="/images/kakao_login_medium_narrow.png">
-        </a>
+    <div class="container">
+        <h1>회원가입 시 연동할 SNS</h1>
+
+        <div class="login">
+
+            <!-- Kakao button -->
+            <a href="https://kauth.kakao.com/oauth/authorize?client_id=603b6f523013db5e0b8e02d2dfa39dc6&redirect_uri=http://localhost:8080/oauth2/kakao&response_type=code">
+                <img src="/images/kakao_logo.png">
+            </a>
+
+            <!-- Naver button -->
+            <a href="">
+                <img src="/images/naver_logo.png">
+            </a>
+
+            <!-- Google button -->
+            <a href="">
+                <img src="/images/google_logo.png">
+            </a>
+
+        </div>
     </div>
 
 </body>
