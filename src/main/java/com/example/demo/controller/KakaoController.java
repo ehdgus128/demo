@@ -5,6 +5,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
 public class KakaoController {
     //redirect uri에 전달된 코드 값을 가지고 Access Token을 요청한다.
     @GetMapping
-    public String getAccessToken(@RequestParam("code") String code) {
+    public String getAccessToken(@RequestParam("code") String code, Model model) {
         System.out.println("code = " + code);
 
         // 1. header 생성
@@ -45,6 +46,10 @@ public class KakaoController {
         );
 
         System.out.println("response = " + response);
+
+        model.addAttribute("kakaoClientId", "603b6f523013db5e0b8e02d2dfa39dc6");
+        model.addAttribute("redirectUri", "http://localhost:8080/oauth2/kakao");
+        model.addAttribute("code", code);
 
         return "home";
     }
