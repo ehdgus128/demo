@@ -1,0 +1,66 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
+<html>
+<head>
+    <title>카카오 로그인</title>
+
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+        // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해 주세요.
+        Kakao.init('{{kakaoClientId}}');
+        // SDK 초기화 여부를 판단합니다.
+        console.log(Kakao.isInitialized());
+    </script>
+
+</head>
+<body>
+<input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+<h1>
+    Hello world!
+</h1>
+
+
+<a id="custom-login-btn" href="javascript:loginWithKakao()">
+    <img
+            src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
+            width="222"
+    />
+</a>
+
+<br>
+
+{{#code}}
+    <h5>code: {{code}}</h5><br>
+    <input type="hidden" id="code" value="{{code}}" />
+    <a id="mytoken" href="javascript:selectMyAccessTockenWithKakao()">나의 토큰 정보 얻기</a>
+{{/code}}
+{{^code}}
+    *로그인 후 code를 받으세요.<br>
+{{/code}}
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script type="text/javascript">
+
+{{#code}}
+    //코드 체크
+    var code = document.getElementById("code").value;
+    if(code != null){
+        //코드 존재
+        console.log("code  존재");
+        console.log(code);
+        Kakao.Auth.setAccessToken(code);
+    }else{
+        console.log("code 없음");
+    }
+{{/code}}
+
+    //카카오 로그인
+    function loginWithKakao() {
+        Kakao.Auth.authorize({
+            redirectUri: '{{redirectUri}}'
+      });
+}
+</script>
+
+</body>
+</html>
