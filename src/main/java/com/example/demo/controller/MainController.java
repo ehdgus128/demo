@@ -30,4 +30,22 @@ public class MainController {
 
         return "main";
     }
+
+    @GetMapping("/home")
+    public String mainPP(Model model) {
+
+        String id = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        Iterator<? extends GrantedAuthority> iter = authorities.iterator();
+        GrantedAuthority auth = iter.next();
+        String role = auth.getAuthority();
+
+        model.addAttribute("id", id);
+        model.addAttribute("role", role);
+
+        return "home";
+    }
 }
