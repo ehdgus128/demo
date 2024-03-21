@@ -13,4 +13,10 @@ public class LoginController {
         return "login";
     }
 
+    @GetMapping("/kakaoLogin")
+    public String kakaoLoginP(){
+
+        return "kakaoLogin";
+    }
+
 }
