@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public interface UserRepository  extends JpaRepository<UserEntity, Integer> {
 
-    boolean existsByUsername(String username);
-
-    UserEntity findByUsername(String username);
+//    boolean existsByUsername(String username);
+//
+//    UserEntity findByUsername(String username);
 }
