@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.google.gson.Gson;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -53,6 +54,5 @@ public class KakaoController {
 
         return "home";
     }
-
 
 }
