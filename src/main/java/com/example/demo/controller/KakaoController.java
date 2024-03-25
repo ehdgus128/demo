@@ -34,7 +34,6 @@ public class KakaoController {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add(HttpHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded;charset=utf-8");
 
-        System.out.println("222 = " + 222);
         // 2. body 생성
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("grant_type", "authorization_code"); //고정값
@@ -68,15 +67,6 @@ public class KakaoController {
         String birthday = userInfo.getAsJsonObject("kakao_account").get("birthyear").getAsString() + userInfo.getAsJsonObject("kakao_account").get("birthday").getAsString();
         String phone_number = userInfo.getAsJsonObject("kakao_account").get("phone_number").getAsString();
 
-        System.out.println("======================Access Token: " + accessToken);
-        System.out.println("======================nickname: " + nickname);
-        System.out.println("======================email: " + email);
-        System.out.println("======================name: " + name);
-        System.out.println("======================gender: " + gender);
-        System.out.println("======================birthday: " + birthday);
-        System.out.println("======================phone_number: " + phone_number);
-
-
         System.out.println("response = " + response);
 
         model.addAttribute("accessToken", accessToken);
@@ -89,11 +79,10 @@ public class KakaoController {
         model.addAttribute("birthday", birthday);
         model.addAttribute("phone_number", phone_number);
 
-
         // 사용자 정보 저장
         UserEntity userEntity = new UserEntity();
         userEntity.setType("KAKAO");
-        userEntity.setRole("USER");
+        userEntity.setRole("ROLE_USER");
         userEntity.setName(name);
         userEntity.setEmail(email);
         userEntity.setGender(gender);
