@@ -22,11 +22,14 @@ public class SecurityConfig {
 
         http
                 .authorizeHttpRequests((auth) -> auth
+//                        .requestMatchers("/", "/kakaoLogin").permitAll()
+//                        .requestMatchers("/admin").hasRole("ADMIN")
+//                        .anyRequest().authenticated()
 //                        .requestMatchers("/", "/login", "/loginProc", "/join", "/joinProc").permitAll()
 //                        .requestMatchers("/admin").hasRole("ADMIN")
 //                        .requestMatchers("/my/**").hasAnyRole("ADMIN", "USER")
 //                        .anyRequest().authenticated()
-                          .anyRequest().permitAll()
+                        .anyRequest().permitAll()
                 );
 
         http
